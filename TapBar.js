@@ -18,6 +18,9 @@ var EmptyPage = require ('./EmptyPage');
 var Scanner = require ('./Scanner');
 var ItemPage = require ('./ItemPage');
 
+var ProUser = require ('./ProUser');
+
+
 class TabBarExample extends React.Component {
   static title = '<TabBarIOS>';
   static description = 'Tab-based navigation.';
@@ -53,7 +56,12 @@ class TabBarExample extends React.Component {
               selectedTab: 'homeTab',
             });
           }}>
-          {this._renderContent('#783E33', 'homeTab')}
+          <NavigatorIOS
+           style={styles.container}
+           initialRoute={{
+             title: 'You are the pro',
+             component: ProUser,
+           }}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           icon={require('./Resources/scan2.png')}
