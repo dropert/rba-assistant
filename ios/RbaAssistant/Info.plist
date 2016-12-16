@@ -26,8 +26,16 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>New item</key>
-			<string></string>
+			<key>rbauction.com</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>dev.hawksearch.net</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>api.nestoria.co.uk</key>
 			<dict>
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>

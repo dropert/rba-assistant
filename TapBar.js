@@ -19,7 +19,7 @@ var Scanner = require ('./Scanner');
 var ItemPage = require ('./ItemPage');
 
 var ProUser = require ('./ProUser');
-
+var EquipmentDetails = require ('./EquipmentDetails');
 
 class TabBarExample extends React.Component {
   static title = '<TabBarIOS>';
@@ -60,8 +60,8 @@ class TabBarExample extends React.Component {
           <NavigatorIOS
            style={styles.container}
            initialRoute={{
-             title: 'You are the pro',
-             component: ProUser,
+             title: 'EquipmentDetails',
+             component: EquipmentDetails,
            }}/>
         </TabBarIOS.Item>
         {/*  ------------------------- Scanner ------------------------- */}
