@@ -8,7 +8,9 @@ var {
   Image,
   Text,
   TextInput,
+  Animated,
   View,
+  ScrollView
 } = ReactNative;
 
 var TouchableWithoutFeedback  = require('TouchableWithoutFeedback');
@@ -24,14 +26,78 @@ const avatorMarginRight = 5
 class Assistant extends React.Component {
 
   state = {
-    showBorder: true
+    showBorder: true,
+    counter: 0,
+    messages: [
+      {
+        source: 'bot',
+        type: 'message',
+        content: 'Here are some things I can help you with ...',
+        target: ''
+      },
+      {
+        source: 'bot',
+        type: 'link',
+        content: 'Show me Dozers, that are selling today ...',
+        target: false
+      },
+      {
+        source: 'bot',
+        type: 'link',
+        content: 'Show me some dozers',
+        target: 'show-dozer-preview'
+      },
+      // {
+      //   source: 'bot',
+      //   type: 'message',
+      //   content: 'Here are some things I can help you with ...',
+      //   target: ''
+      // },
+      // {
+      //   source: 'bot',
+      //   type: 'link',
+      //   content: 'Show me Dozers, that are selling today ...',
+      //   target: false
+      // },
+      // {
+      //   source: 'bot',
+      //   type: 'link',
+      //   content: 'Show me what to bid on ...',
+      //   target: 'show-bid'
+      // },
+      // {
+      //   source: 'bot',
+      //   type: 'message',
+      //   content: 'Here are some things I can help you with ...',
+      //   target: ''
+      // },
+      // {
+      //   source: 'bot',
+      //   type: 'link',
+      //   content: 'Show me Dozers, that are selling today ...',
+      //   target: false
+      // },
+      {
+        source: 'bot',
+        type: 'link',
+        content: 'Show me what to bid on ...',
+        target: 'show-bid'
+      }
+    ]
   };
 
-  _handlePress () {
+  _handlePress (target) {
+    let component;
+
+    switch(target) {
+
+      default:
+        component = EmptyPage
+    }
 
     this.props.navigator.push({
-      title: 'How to bid',
-      component: EmptyPage,
+      title: target,
+      component: component,
       // passProps: {listings: 'rober'}
     });
 
@@ -50,39 +116,96 @@ class Assistant extends React.Component {
     </TouchableHighlight>
     */
 
+    let self = this
+    this._handlePress = this._handlePress.bind(this)
+
     return (
     <View style={[styles.container]}>
 
-      <View style={[styles2.flowRight, styles.bubble]}>
-        <Image style={[styles2.searchInput], {width: avatarImageSize, height: avatarImageSize}} source={require('./Resources/react-grey.png')} />
+      <ScrollView>
 
-          <Text style={[styles.bubbleContent,styles2.button]}>
-            Here are some things I can help you with ...
-          </Text>
+      {this.state.messages.map(function(message, index){
 
-      </View>
+        let onPressFunction = (message.target === '' || !message.target)
+          ? function(){}
+          :  self._handlePress.bind(self, message.target)
 
-      <TouchableWithoutFeedback>
-          <View style={styles.bubble}>
-            <Text style={[styles.link, styles.bubbleContent, styles.replaceImage]}>
-              Show me Dozers, that are selling today ...
-            </Text>
-          </View>
-      </TouchableWithoutFeedback>
+        // message with chat icon
+        if(message.type === 'message') {
+          return (
+            <View key={index} style={[styles2.flowRight, styles.bubble]}>
+              <TouchableWithoutFeedback onPress={() => {
+                  let counter = (self.state.counter + 1)
 
-      <TouchableWithoutFeedback onPress={this._handlePress.bind(this)}>
-          <View style={styles.bubble}>
-            <Text style={[styles.link, styles.bubbleContent,  styles.replaceImage]}>
-              Show me what to bid on ...
-            </Text>
-          </View>
-      </TouchableWithoutFeedback>
+                  switch(self.state.counter) {
 
+                    case 3:
+                      self.setState({
+                        counter,
+                        messages: self.state.messages.concat([{
+                          source: 'bot',
+                          type: 'link',
+                          content: 'Jojo',
+                          target: 'show-bid'
+                        }])
+                      })
+                      break;
+
+                      case 6:
+                        self.setState({
+                          counter,
+                          messages: self.state.messages.concat([{
+                            source: 'bot',
+                            type: 'message',
+                            content: 'Jojo 123',
+                            target: 'show-bid'
+                          }])
+                        })
+                        break;
+
+                    default:
+                      self.setState({
+                        counter
+                      })
+                  }
+
+              }}>
+                <Image style={[styles2.searchInput], {width: avatarImageSize, height: avatarImageSize}} source={require('./Resources/react-grey.png')} />
+              </TouchableWithoutFeedback>
+
+              <Text style={[styles.bubbleContent,styles2.button]}>
+                {message.content}
+              </Text>
+            </View>
+          )
+        }
+
+        // message without chat icon
+        if(message.type === 'link') {
+          return (
+            <View key={index}>
+              <TouchableWithoutFeedback onPress={onPressFunction}>
+                  <View style={styles.bubble}>
+                    <Text style={[styles.link, styles.bubbleContent, styles.replaceImage]}>
+                      {message.content}
+                    </Text>
+                  </View>
+              </TouchableWithoutFeedback>
+            </View>
+          )
+        }
+
+      })}
+
+    </ScrollView>
+
+      {/* Question input field */}
       <View style={styles.flowRight}>
         <TextInput
           style={styles.searchInput}
           placeholder='Ask me something ...'/>
       </View>
+      {/* END Question input field */}
     </View>
     );
   }
@@ -125,7 +248,9 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
-    marginTop: 120,
+    paddingTop: 0,
+    marginTop: 0,
+    paddingBottom: 120
     // alignItems: 'center'
   },
   replaceImage: {
