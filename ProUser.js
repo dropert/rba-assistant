@@ -29,7 +29,7 @@ var styles = StyleSheet.create({
   },
   topcontainer: {
     padding: 0,
-    marginTop: 65,
+    marginTop: 0,
     alignItems: 'stretch',
     height:140,
     flexDirection:'row'

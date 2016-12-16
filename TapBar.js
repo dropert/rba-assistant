@@ -17,7 +17,6 @@ var Config = require ('./__config');
 var EmptyPage = require ('./EmptyPage');
 var Scanner = require ('./Scanner');
 var ItemPage = require ('./ItemPage');
-
 var ProUser = require ('./ProUser');
 var EquipmentDetails = require ('./EquipmentDetails');
 
@@ -27,7 +26,7 @@ class TabBarExample extends React.Component {
   static displayName = 'TabBarExample';
 
   state = {
-    selectedTab: 'assistantTab',
+    selectedTab: 'equipmentTab',
     notifCount: 0,
     presses: 0,
   };
@@ -42,26 +41,65 @@ class TabBarExample extends React.Component {
   };
 
   render() {
+
+    /*
+
+    <TabBarIOS.Item
+      title="Home"
+      style={styles.button}
+      icon={require('./Resources/home.png')}
+      selected={this.state.selectedTab === 'homeTab'}
+      onPress={() => {
+        this.setState({
+          selectedTab: 'homeTab',
+        });
+      }}>
+      <NavigatorIOS
+       style={styles.container}
+       initialRoute={{
+         title: 'EquipmentDetails',
+         component: EquipmentDetails,
+       }}/>
+    </TabBarIOS.Item>
+
+    */
     return (
       <TabBarIOS
         tintColor={Config.colors.lightblue}
         barTintColor={Config.colors.lightgrey}>
-        {/*  ------------------------- Home ------------------------- */}
+        {/*  ------------------------- Equipment ------------------------- */}
         <TabBarIOS.Item
-          title="Home"
-          style={styles.button}
-          icon={require('./Resources/home.png')}
-          selected={this.state.selectedTab === 'homeTab'}
+          icon={require('./Resources/grid.png')}
+          title="Equipment"
+          selected={this.state.selectedTab === 'equipmentTab'}
           onPress={() => {
             this.setState({
-              selectedTab: 'homeTab',
+              selectedTab: 'equipmentTab'
+            });
+          }}>
+            <NavigatorIOS
+             style={styles.container}
+             initialRoute={{
+               title: '',
+               component: ProUser,
+               navigationBarHidden: true
+             }}/>
+        </TabBarIOS.Item>
+        {/*  ------------------------- Assistant ------------------------- */}
+        <TabBarIOS.Item
+          icon={require('./Resources/react-bw.png')}
+          title="Ritchie Baba"
+          selected={this.state.selectedTab === 'assistantTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'assistantTab'
             });
           }}>
           <NavigatorIOS
-           style={styles.container}
+           style={[styles.container]}
            initialRoute={{
-             title: 'EquipmentDetails',
-             component: EquipmentDetails,
+             title: 'Ritchie Baba',
+             component: Assisant,
            }}/>
         </TabBarIOS.Item>
         {/*  ------------------------- Scanner ------------------------- */}
@@ -81,40 +119,6 @@ class TabBarExample extends React.Component {
                component: Scanner,
                navigationBarHidden: true
              }}/>
-        </TabBarIOS.Item>
-        {/*  ------------------------- Equipment ------------------------- */}
-        <TabBarIOS.Item
-          icon={require('./Resources/grid.png')}
-          title="Equipment"
-          selected={this.state.selectedTab === 'equipmentTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'equipmentTab'
-            });
-          }}>
-            <NavigatorIOS
-             style={styles.container}
-             initialRoute={{
-               title: '',
-               component: ItemPage,
-             }}/>
-        </TabBarIOS.Item>
-        {/*  ------------------------- Assistant ------------------------- */}
-        <TabBarIOS.Item
-          icon={require('./Resources/react-bw.png')}
-          title="Ritchie Baba"
-          selected={this.state.selectedTab === 'assistantTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'assistantTab'
-            });
-          }}>
-          <NavigatorIOS
-           style={[styles.container]}
-           initialRoute={{
-             title: 'Ritchie Baba',
-             component: Assisant,
-           }}/>
         </TabBarIOS.Item>
       </TabBarIOS>
     );

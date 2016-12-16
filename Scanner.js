@@ -14,7 +14,7 @@ var Config = require ('./__config');
 var TouchableWithoutFeedback  = require('TouchableWithoutFeedback');
 var TouchableHighlight  = require('TouchableHighlight');
 var EmptyPage = require ('./EmptyPage');
-var ItemPage = require ('./ItemPage');
+var EquipmentDetails = require ('./EquipmentDetails');
 
 const avatarImageSize = 300
 
@@ -25,7 +25,7 @@ class Scanner extends Component {
   onSearchPressed(equipment) {
     this.props.navigator.push({
       title: 'Item Detail Page',
-      component: ItemPage,
+      component: EquipmentDetails,
       passProps: {type: equipment}
     });
   }
