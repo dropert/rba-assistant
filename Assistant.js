@@ -17,6 +17,7 @@ var TouchableWithoutFeedback  = require('TouchableWithoutFeedback');
 var TouchableHighlight  = require('TouchableHighlight');
 var EmptyPage = require ('./EmptyPage');
 var Config = require ('./__config');
+var ScrollViewTest = require ('./ScrollViewTest');
 
 
 const avatarImageSize = 40
@@ -38,8 +39,8 @@ class Assistant extends React.Component {
       {
         source: 'bot',
         type: 'link',
-        content: 'Show me Dozers, that are selling today ...',
-        target: false
+        content: 'Show me what to bid on ...',
+        target: 'show-bid'
       },
       {
         source: 'bot',
@@ -77,31 +78,50 @@ class Assistant extends React.Component {
       //   content: 'Show me Dozers, that are selling today ...',
       //   target: false
       // },
-      {
-        source: 'bot',
-        type: 'link',
-        content: 'Show me what to bid on ...',
-        target: 'show-bid'
-      }
+
     ]
   };
 
-  _handlePress (target) {
-    let component;
+    _addMessages() {
 
-    switch(target) {
-
-      default:
-        component = EmptyPage
     }
 
-    this.props.navigator.push({
-      title: target,
-      component: component,
-      // passProps: {listings: 'rober'}
-    });
+    _handlePress (target) {
+      let component;
 
- };
+      switch(target) {
+
+        case 'show-dozer-preview':
+          this.setState({
+            messages: this.state.messages.concat([{
+              source: 'bot',
+              type: 'component',
+              content: <ScrollViewTest/>,
+              target: false
+            },
+            {
+              source: 'bot',
+              type: 'link',
+              content: 'Show all dozers in this auction',
+              target: false
+            }
+          ])
+          })
+        break;
+
+        default:
+          component = EmptyPage
+          break;
+      }
+
+      if( component !== undefined) {
+        this.props.navigator.push({
+          title: target,
+          component: component,
+          // passProps: {listings: 'rober'}
+        });
+      }
+   }
 
   render() {
 
@@ -145,7 +165,7 @@ class Assistant extends React.Component {
                         messages: self.state.messages.concat([{
                           source: 'bot',
                           type: 'link',
-                          content: 'Jojo',
+                          content: 'do things',
                           target: 'show-bid'
                         }])
                       })
@@ -195,9 +215,18 @@ class Assistant extends React.Component {
           )
         }
 
+        // message without chat icon
+        if(message.type === 'component') {
+          return (
+            <View key={index}>
+              {message.content}
+            </View>
+          )
+        }
+
       })}
 
-    </ScrollView>
+      </ScrollView>
 
       {/* Question input field */}
       <View style={styles.flowRight}>
