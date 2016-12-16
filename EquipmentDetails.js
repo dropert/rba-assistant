@@ -73,11 +73,11 @@ var styles = StyleSheet.create({
     },
     topcontainer:{
       alignItems: 'center',
-      padding:10,
+      padding:0,
       backgroundColor:'#393939'
     },
     watchcontainer:{
-      marginTop:10,
+      marginTop:20,
       marginLeft: 10,
       marginRight: 10,
       marginBottom:10,
@@ -101,10 +101,10 @@ var styles = StyleSheet.create({
       marginLeft:10
     },
     text:{
-      marginTop:10
+      marginTop:15
     },
     textbold:{
-      marginTop:10,
+      marginTop:15,
       fontWeight:"bold"
     }
 });
@@ -154,7 +154,7 @@ geturl(){
     return (
       <View style={styles.container}>
         <View style = {styles.topcontainer}>
-          <Image style={[styles.itemimage], {width: avatarImageSize+150, height: avatarImageSize}} source={{uri:'https://www.rbauction.com'+this.state.image}} />
+          <Image style={[styles.itemimage], {width: avatarImageSize+180, height: avatarImageSize+50}} source={{uri:'https://www.rbauction.com'+this.state.image}} />
         </View>
         <View style = {styles.watchlistcontainer}>
           <Button
@@ -180,8 +180,8 @@ geturl(){
         </View>
         <View style = {styles.watchcontainer}>
           <Button
-            title="Bid Now"
-            color={Config.colors.buttonText}
+            title="See more details about this item"
+            color={'#ffffff'}
             accessibilityLabel="Watchlist"
             onPress={watchlist}
           />
@@ -191,14 +191,6 @@ geturl(){
             More like this
           </Text>
         </View> */}
-        <View style = {styles.buttonsContainer}>
-          <Button
-            title="See more details about this item"
-            color= {Config.colors.buttonText}
-            accessibilityLabel="see more"
-            onPress={watchlist}
-          />
-        </View>
         <View style = {styles.buttonsContainer}>
           <Button
             title="More items like this"
