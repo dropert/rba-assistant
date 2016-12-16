@@ -29,14 +29,14 @@ var styles = StyleSheet.create({
   },
   topcontainer: {
     padding: 0,
-    marginTop: 0,
+    marginTop: 25,
     alignItems: 'stretch',
     height:140,
     flexDirection:'row'
 
   },
   midcontainer:{
-    backgroundColor:Config.colors.lightblue,
+    backgroundColor:Config.colors.buttonColor,
     marginTop:10,
     marginLeft: 10,
     marginRight: 10,
@@ -103,16 +103,23 @@ var styles = StyleSheet.create({
     },
     rowStyle:{
         flexDirection:'row',
-        padding: 10,
-        paddingBottom:20,
-        borderColor: '#345687',
-        borderBottomWidth:2
+        paddingBottom:8,
+        paddingLeft:20,
+        paddingTop:8,
+
+        borderColor: '#ffffff',
+        borderBottomWidth:1
     },
     columnStyle:{
+      marginTop:10,
        flexDirection: 'column'
     },
     leftColumn:{
       width: 260
+    },
+    textbold:{
+      fontWeight:"bold",
+      marginLeft: 10
     }
 });
 
@@ -125,8 +132,8 @@ class ProUser extends Component {
         <View style = {styles.topcontainer}>
           <Image style={[styles.itemimage], {width: avatarImageSize+30, height: avatarImageSize}} source={require('./Resources/item.jpg')} />
           <View style = {styles.columnStyle}>
-            <Text style={styles.itemName}>
-                2015 CATERPILLAR 745C 6x6 Articulated Dump Truck
+            <Text style={styles.itemName,styles.textbold}>
+                2015 CATERPILLAR 745C
             </Text>
             <Text style={styles.itemDetails}>
               Lot # 390
@@ -134,21 +141,21 @@ class ProUser extends Component {
             <Text style={styles.itemDetails}>
               Estimated Price
             </Text>
-            <Text style={styles.itemDetails}>
-              45000
+            <Text style={styles.itemDetails,styles.textbold}>
+              USD 45000
             </Text>
             <Text style={styles.itemDetails}>
               Asking Price
             </Text>
-            <Text style={styles.itemDetails}>
-              15000
+            <Text style={styles.itemDetails, styles.textbold}>
+              USD 15000
             </Text>
           </View>
       </View>
       <View style={styles.midcontainer}>
           <Button
             title="Bid Now"
-            color="#345298"
+            color="#ffffff"
             accessibilityLabel="Bid Now"
             onPress={bidNow}
           />
@@ -176,7 +183,7 @@ class ProUser extends Component {
               <Text>Lot #358</Text>
             </View>
             <View style={styles.rowStyle}>
-              <Text style={styles.leftColumn}>2001 JOHN DEERE 624H Wheel Loader</Text>
+              <Text style={styles.leftColumn}>2001 JOHN DEERE 624H</Text>
               <Text>Lot #359</Text>
             </View>
             <View style={styles.rowStyle}>
@@ -184,12 +191,12 @@ class ProUser extends Component {
               <Text>Lot #360</Text>
             </View>
             <View style={styles.rowStyle}>
-              <Text style={styles.leftColumn}>2013 CATERPILLAR 908H2 Wheel Loader</Text>
+              <Text style={styles.leftColumn}>2013 CATERPILLAR 908H2</Text>
               <Text>Lot #360A</Text>
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.leftColumn}>2015 VOLVO L90H Wheel Loader</Text>
-              <Text>CLot #360B</Text>
+              <Text>Lot #360B</Text>
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.leftColumn}>2016 VOLVO L90H Wheel Loader</Text>
@@ -212,7 +219,7 @@ class ProUser extends Component {
               <Text>Lot #364</Text>
             </View>
             <View style={styles.rowStyle}>
-              <Text style={styles.leftColumn}>1997 KENWORTH T800 Super 16 Dump Truck (Quad/A)</Text>
+              <Text style={styles.leftColumn}>1997 KENWORTH T800 Super</Text>
               <Text>Lot #365</Text>
             </View>
             <View style={styles.rowStyle}>
