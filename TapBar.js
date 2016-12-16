@@ -68,9 +68,9 @@ class TabBarExample extends React.Component {
             });
           }}>
           <NavigatorIOS
-           style={[styles.container, {backgroundColor: 'yellow'}]}
+           style={[styles.container]}
            initialRoute={{
-             title: '',
+             title: 'test',
              component: Assisant,
            }}/>
         </TabBarIOS.Item>
