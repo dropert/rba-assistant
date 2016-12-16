@@ -9,15 +9,16 @@ import {
   TextInput
 } from 'react-native';
 
+
 var Config = require ('./__config');
 var TouchableWithoutFeedback  = require('TouchableWithoutFeedback');
 var TouchableHighlight  = require('TouchableHighlight');
 var EmptyPage = require ('./EmptyPage');
 var ItemPage = require ('./ItemPage');
 
-const avatarImageSize = 100
+const avatarImageSize = 300
 
-const bgColor = Config.colors.lightblue
+const bgColor = '#2a2826'
 
 class Scanner extends Component {
 
@@ -36,7 +37,7 @@ class Scanner extends Component {
 
         <View style={styles.container}>
          <Text style={[styles.headline]}>Scanning equipment</Text>
-         <Image source={require('./Resources/ripple.gif')} style={[{width: avatarImageSize, height: avatarImageSize}]} />
+         <Image source={require('./Resources/spinner/spinner2.gif')} style={[{width: avatarImageSize, height: avatarImageSize}]} />
        </View>
 
        <View style={styles.flowRight}>
@@ -83,8 +84,8 @@ searchInput: {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 0,
-    marginTop: 50,
+    paddingTop: 60,
+    marginTop: 0,
     alignItems: 'center',
     backgroundColor: bgColor
   },
@@ -100,7 +101,9 @@ var styles = StyleSheet.create({
   headline: {
     fontSize: 30,
     padding: 20,
-    textAlign: 'center'
+    fontFamily: Config.fonts.light,
+    textAlign: 'center',
+    color: Config.colors.lightblue
   },
   paddingBottom: {
     paddingBottom: 20
