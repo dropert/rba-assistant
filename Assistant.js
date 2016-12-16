@@ -19,9 +19,7 @@ var EmptyPage = require ('./EmptyPage');
 var Config = require ('./__config');
 var ScrollViewTest = require ('./ScrollViewTest');
 
-
 const avatarImageSize = 40
-
 const avatorMarginRight = 5
 
 class Assistant extends React.Component {
@@ -47,44 +45,9 @@ class Assistant extends React.Component {
         type: 'link',
         content: 'Show me some dozers',
         target: 'show-dozer-preview'
-      },
-      // {
-      //   source: 'bot',
-      //   type: 'message',
-      //   content: 'Here are some things I can help you with ...',
-      //   target: ''
-      // },
-      // {
-      //   source: 'bot',
-      //   type: 'link',
-      //   content: 'Show me Dozers, that are selling today ...',
-      //   target: false
-      // },
-      // {
-      //   source: 'bot',
-      //   type: 'link',
-      //   content: 'Show me what to bid on ...',
-      //   target: 'show-bid'
-      // },
-      // {
-      //   source: 'bot',
-      //   type: 'message',
-      //   content: 'Here are some things I can help you with ...',
-      //   target: ''
-      // },
-      // {
-      //   source: 'bot',
-      //   type: 'link',
-      //   content: 'Show me Dozers, that are selling today ...',
-      //   target: false
-      // },
-
+      }
     ]
   };
-
-    _addMessages() {
-
-    }
 
     _handlePress (target) {
       let component;
@@ -106,7 +69,7 @@ class Assistant extends React.Component {
               target: false
             }
           ])
-          })
+        })
         break;
 
         default:
@@ -193,9 +156,13 @@ class Assistant extends React.Component {
                 <Image style={[styles2.searchInput], {width: avatarImageSize, height: avatarImageSize}} source={require('./Resources/react-grey.png')} />
               </TouchableWithoutFeedback>
 
-              <Text style={[styles.bubbleContent,styles2.button]}>
-                {message.content}
-              </Text>
+
+              <View style={styles2.buttonParent}>
+                <Text style={[styles.bubbleContent,styles2.button]}>
+                  {message.content}
+                </Text>
+              </View>
+
             </View>
           )
         }
@@ -205,8 +172,8 @@ class Assistant extends React.Component {
           return (
             <View key={index}>
               <TouchableWithoutFeedback onPress={onPressFunction}>
-                  <View style={styles.bubble}>
-                    <Text style={[styles.link, styles.bubbleContent, styles.replaceImage]}>
+                  <View style={[styles.buttonParent, styles.bubble, styles.replaceImage]}>
+                    <Text style={[styles.link, styles.bubbleContent]}>
                       {message.content}
                     </Text>
                   </View>
@@ -241,7 +208,7 @@ class Assistant extends React.Component {
 }
 
 var styles2 = StyleSheet.create({
-  flowRight: {
+flowRight: {
   flexDirection: 'row',
   alignItems: 'center',
   alignSelf: 'stretch'
@@ -251,13 +218,19 @@ buttonText: {
   color: 'white',
   alignSelf: 'center'
 },
+buttonParent: {
+  backgroundColor: Config.colors.lightblue,
+  borderColor: Config.colors.lightblue,
+  borderRadius: 5,
+  borderWidth: 3,
+  marginLeft: 10
+},
 button: {
   flex: 1,
   flexDirection: 'row',
   backgroundColor: Config.colors.lightblue,
-  borderColor: 'red',
-  // borderWidth: 1,
-  borderRadius: 8,
+  color: 'white',
+  borderWidth: 0,
   margin: avatorMarginRight,
   alignSelf: 'stretch',
   justifyContent: 'center'
@@ -283,7 +256,7 @@ var styles = StyleSheet.create({
     // alignItems: 'center'
   },
   replaceImage: {
-    marginLeft: (avatarImageSize + avatorMarginRight)
+    marginLeft: 60
   },
   link: {
     color: Config.colors.lightblue,
@@ -302,15 +275,20 @@ var styles = StyleSheet.create({
   bubble : {
     margin: 10,
     borderRadius: 5,
-    maxWidth: 300,
+    maxWidth: 260,
   },
   bubbleContent :  {
-    padding: 10,
     backgroundColor: Config.colors.lightgrey,
+    padding: 5
+  },
+  buttonParent: {
+    backgroundColor: Config.colors.lightgrey,
+    borderColor: Config.colors.lightgrey,
     borderRadius: 5,
+    borderWidth: 3
   },
   flowRight: {
-    position: 'absolute',
+      position: 'absolute',
       left: 0,
       right: 0,
       bottom: 65,
