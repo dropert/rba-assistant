@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  Image,
   View,
   Text
 } from 'react-native';
@@ -19,6 +18,9 @@ class ItemPage extends Component {
   }
 }
 
+ItemPage.defaultProps = {
+  type: 'dummy'
+}
 
 var styles = StyleSheet.create({
   container: {
@@ -27,6 +29,5 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
-
 
 module.exports = ItemPage;

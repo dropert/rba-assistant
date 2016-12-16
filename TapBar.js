@@ -16,6 +16,7 @@ var Assisant = require('./Assistant')
 var Config = require ('./__config');
 var EmptyPage = require ('./EmptyPage');
 var Scanner = require ('./Scanner');
+var ItemPage = require ('./ItemPage');
 
 class TabBarExample extends React.Component {
   static title = '<TabBarIOS>';
@@ -40,7 +41,6 @@ class TabBarExample extends React.Component {
   render() {
     return (
       <TabBarIOS
-        unselectedTintColor={Config.colors.lightblue}
         tintColor={Config.colors.lightblue}
         barTintColor={Config.colors.lightgrey}>
         <TabBarIOS.Item
@@ -73,20 +73,20 @@ class TabBarExample extends React.Component {
              }}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          icon={require('./Resources/scan.png')}
-          title="User"
-          selected={this.state.selectedTab === 'userTab2'}
+          icon={require('./Resources/grid.png')}
+          title="Equipment"
+          selected={this.state.selectedTab === 'equipmentTab'}
           onPress={() => {
             this.setState({
-              selectedTab: 'userTab2',
+              selectedTab: 'equipmentTab',
               presses: this.state.presses + 1
             });
           }}>
             <NavigatorIOS
              style={styles.container}
              initialRoute={{
-               title: 'Property Finder 1235',
-               component: EmptyPage,
+               title: '',
+               component: ItemPage,
              }}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item

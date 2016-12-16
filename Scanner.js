@@ -27,7 +27,6 @@ class Scanner extends Component {
       component: ItemPage,
       passProps: {type: equipment}
     });
-
   }
 
   render() {
