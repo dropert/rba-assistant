@@ -26,7 +26,7 @@ class TabBarExample extends React.Component {
   static displayName = 'TabBarExample';
 
   state = {
-    selectedTab: 'equipmentTab',
+    selectedTab: 'assistantTab',
     notifCount: 0,
     presses: 0,
   };
@@ -87,7 +87,7 @@ class TabBarExample extends React.Component {
         </TabBarIOS.Item>
         {/*  ------------------------- Assistant ------------------------- */}
         <TabBarIOS.Item
-          icon={require('./Resources/react-bw.png')}
+          icon={require('./Resources/bot_nav_avatar2.png')}
           title="Ritchie Baba"
           selected={this.state.selectedTab === 'assistantTab'}
           onPress={() => {

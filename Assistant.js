@@ -31,20 +31,14 @@ class Assistant extends React.Component {
       {
         source: 'bot',
         type: 'message',
-        content: 'Here are some things I can help you with ...',
-        target: ''
+        content: 'Here are some things I can help with',
+        target: false
       },
       {
         source: 'bot',
         type: 'link',
-        content: 'Show me what to bid on ...',
+        content: 'Welcome to Ritchie Bros. This is the Registration desk ...',
         target: 'show-bid'
-      },
-      {
-        source: 'bot',
-        type: 'link',
-        content: 'Show me some dozers',
-        target: 'show-dozer-preview'
       }
     ]
   };
@@ -54,23 +48,23 @@ class Assistant extends React.Component {
 
       switch(target) {
 
-        case 'show-dozer-preview':
-          this.setState({
-            messages: this.state.messages.concat([{
-              source: 'bot',
-              type: 'component',
-              content: <ScrollViewTest/>,
-              target: false
-            },
-            {
-              source: 'bot',
-              type: 'link',
-              content: 'Show all dozers in this auction',
-              target: false
-            }
-          ])
-        })
-        break;
+        // case 'show-dozer-preview':
+        //   this.setState({
+        //     messages: this.state.messages.concat([{
+        //       source: 'bot',
+        //       type: 'component',
+        //       content: <ScrollViewTest/>,
+        //       target: false
+        //     },
+        //     {
+        //       source: 'bot',
+        //       type: 'link',
+        //       content: 'Show me some dozers',
+        //       target: 'show-dozer-preview'
+        //     }
+        //   ])
+        // })
+        // break;
 
         default:
           component = EmptyPage
@@ -79,7 +73,7 @@ class Assistant extends React.Component {
 
       if( component !== undefined) {
         this.props.navigator.push({
-          title: target,
+          title: 'Registration Desk',
           component: component,
           // passProps: {listings: 'rober'}
         });
@@ -122,27 +116,35 @@ class Assistant extends React.Component {
 
                   switch(self.state.counter) {
 
-                    case 3:
+                    case 2:
                       self.setState({
                         counter,
                         messages: self.state.messages.concat([{
                           source: 'bot',
                           type: 'link',
-                          content: 'do things',
-                          target: 'show-bid'
+                          content: 'How to bid',
+                          target: false
                         }])
                       })
                       break;
 
-                      case 6:
+                      case 4:
                         self.setState({
                           counter,
-                          messages: self.state.messages.concat([{
-                            source: 'bot',
-                            type: 'message',
-                            content: 'Jojo 123',
-                            target: 'show-bid'
-                          }])
+                          messages: self.state.messages.concat([
+                            {
+                              source: 'bot',
+                              type: 'component',
+                              content: <ScrollViewTest/>,
+                              target: false
+                            },
+                            {
+                              source: 'bot',
+                              type: 'link',
+                              content: 'Look at more dozers from this auction',
+                              target: false
+                            }
+                        ])
                         })
                         break;
 
@@ -153,7 +155,7 @@ class Assistant extends React.Component {
                   }
 
               }}>
-                <Image style={[styles2.searchInput], {width: avatarImageSize, height: avatarImageSize}} source={require('./Resources/react-grey.png')} />
+                <Image style={[styles2.searchInput], {width: avatarImageSize, height: avatarImageSize}} source={require('./Resources/bot@2x.png')} />
               </TouchableWithoutFeedback>
 
 
@@ -275,7 +277,7 @@ var styles = StyleSheet.create({
   bubble : {
     margin: 10,
     borderRadius: 5,
-    maxWidth: 260,
+    maxWidth: 300,
   },
   bubbleContent :  {
     backgroundColor: Config.colors.lightgrey,

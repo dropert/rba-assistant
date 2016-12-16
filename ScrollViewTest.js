@@ -44,7 +44,7 @@ class ScrollViewTest extends React.Component {
     var _scrollView: ScrollView;
     return (
       <View style={{marginLeft: 10}}>
-        <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 10, marginTop: 10}}>Top recommendations</Text>
+        <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 10, marginTop: 10, color: Config.colors.lightblue}}>Top recommendations for Dozers</Text>
         <ScrollView
           ref={(scrollView) => { _scrollView = scrollView; }}
           automaticallyAdjustContentInsets={false}
