@@ -11,14 +11,11 @@ var {
 } = ReactNative;
 
 var SearchPage = require('./SearchPage');
-
 var TestModal = require('./Modal')
-// import Assisant from './Assistant'
 var Assisant = require('./Assistant')
-
 var Config = require ('./__config');
-
 var EmptyPage = require ('./EmptyPage');
+var Scanner = require ('./Scanner');
 
 class TabBarExample extends React.Component {
   static title = '<TabBarIOS>';
@@ -26,7 +23,7 @@ class TabBarExample extends React.Component {
   static displayName = 'TabBarExample';
 
   state = {
-    selectedTab: 'assistantTab',
+    selectedTab: 'scannerTab',
     notifCount: 0,
     presses: 0,
   };
@@ -61,18 +58,18 @@ class TabBarExample extends React.Component {
         <TabBarIOS.Item
           icon={require('./Resources/scan2.png')}
           title="Scanner"
-          selected={this.state.selectedTab === 'userTab'}
+          selected={this.state.selectedTab === 'scannerTab'}
           onPress={() => {
             this.setState({
-              selectedTab: 'userTab',
+              selectedTab: 'scannerTab',
               presses: this.state.presses + 1
             });
           }}>
             <NavigatorIOS
              style={styles.container}
              initialRoute={{
-               title: 'Property Finder 1235',
-               component: SearchPage,
+               title: '',
+               component: Scanner,
              }}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
